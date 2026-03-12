@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #f8f9fa;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2.5 rounded-lg transition-all duration-150 text-sm;
+  }
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-700 font-medium px-4 py-2.5 rounded-lg border border-gray-200 transition-all duration-150 text-sm;
+  }
+  .btn-danger {
+    @apply bg-red-50 hover:bg-red-100 text-red-600 font-medium px-4 py-2.5 rounded-lg transition-all duration-150 text-sm;
+  }
+  .card {
+    @apply bg-white rounded-xl border border-gray-100 shadow-sm;
+  }
+  .input {
+    @apply w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1.5;
+  }
+}
+
+/* Sidebar active link */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.nav-link:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.nav-link.active {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+/* Calendar styles */
+.calendar-day {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.calendar-day:hover:not(.disabled):not(.selected) {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.calendar-day.selected {
+  background-color: #006BFF;
+  color: white;
+  font-weight: 600;
+}
+
+.calendar-day.today {
+  font-weight: 700;
+  color: #006BFF;
+}
+
+.calendar-day.disabled {
+  color: #d1d5db;
+  cursor: default;
+}
+
+/* Time slot button */
+.time-slot {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.time-slot:hover:not(.selected) {
+  border-color: #006BFF;
+  color: #006BFF;
+  background: #eff6ff;
+}
+
+.time-slot.selected {
+  background-color: #006BFF;
+  color: white;
+  border-color: #006BFF;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
