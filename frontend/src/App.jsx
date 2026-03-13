@@ -8,7 +8,7 @@ import PublicBooking from './pages/PublicBooking'
 import BookingConfirmation from './pages/BookingConfirmation'
 import { NavLink } from 'react-router-dom'
 import { Calendar, Clock, Users, LayoutGrid } from 'lucide-react'
-import logo from './assets/images/calendly-vector-logo-seeklogo/calendly-seeklogo.png'
+import logo from './assets/images/brand-logo/logo.png'
 
 const navItems = [
   { to: '/dashboard', label: 'Dashboard', icon: LayoutGrid, end: true },
@@ -37,7 +37,7 @@ export default function App() {
       <header className="bg-white border-b border-gray-200 px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img src={logo} alt="Calendly Logo" className="h-12 w-auto" />
+            <img src={logo} alt="Schedulr logo" className="h-12 w-auto" />
             <nav className="flex items-center space-x-6">
               {navItems.map(({ to, label, icon: Icon, end }) => (
                 <NavLink

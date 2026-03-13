@@ -10,7 +10,7 @@ from .routers import event_types, availability, bookings, meetings
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="Calendly Clone API",
+    title="Schedulr API",
     description="A scheduling platform API",
     version="1.0.0"
 )
@@ -42,7 +42,7 @@ app.include_router(meetings.router)
 
 @app.get("/")
 def root():
-    return {"message": "Calendly Clone API is running", "docs": "/docs"}
+    return {"message": "Schedulr API is running", "docs": "/docs"}
 
 
 @app.get("/health")

@@ -1,6 +1,6 @@
-# Calendly Clone
+# Schedulr
 
-A full-stack scheduling/booking web application closely replicating Calendly's design and user experience.
+A full-stack scheduling and booking web application with a polished scheduler-style experience.
 
 ## Tech Stack
 
@@ -205,7 +205,7 @@ start_datetime, end_datetime, notes, status (confirmed|cancelled), created_at
 - ✅ Event Types CRUD (create, edit, delete, list)
 - ✅ Unique public booking URL per event type (`/book/:slug`)
 - ✅ Availability settings (per day, time range, timezone)
-- ✅ Public booking page (Calendly-style 3-panel layout)
+- ✅ Public booking page with a 3-panel booking layout
 - ✅ Month calendar view with unavailable days greyed out
 - ✅ Available time slots generation
 - ✅ Double-booking prevention
@@ -214,4 +214,4 @@ start_datetime, end_datetime, notes, status (confirmed|cancelled), created_at
 - ✅ Cancel meeting
 - ✅ Seeded sample data
 - ✅ Responsive layout
-- ✅ Clean Calendly-inspired UI
+- ✅ Clean scheduling-focused UI

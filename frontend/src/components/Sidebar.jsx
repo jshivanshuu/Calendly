@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { Settings } from 'lucide-react'
-import logo from '../assets/images/calendly-vector-logo-seeklogo/calendly-seeklogo.png'
+import logo from '../assets/images/brand-logo/logo.png'
 
 export default function Sidebar() {
   return (
@@ -8,7 +8,7 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="px-5 py-5 border-b border-gray-100">
         <div className="flex items-center gap-2.5">
-          <img src={logo} alt="Calendly Logo" className="h-12 w-auto" />
+          <img src={logo} alt="Schedulr logo" className="h-12 w-auto" />
         </div>
       </div>
 
@@ -17,15 +17,13 @@ export default function Sidebar() {
 
       {/* Bottom */}
       <div className="px-3 py-4 border-t border-gray-100">
-        <a
-          href="https://calendly.com"
-          target="_blank"
-          rel="noopener noreferrer"
+        <NavLink
+          to="/availability"
           className="nav-link"
         >
           <Settings className="w-4 h-4" />
-          Settings
-        </a>
+          Preferences
+        </NavLink>
       </div>
     </aside>
   )

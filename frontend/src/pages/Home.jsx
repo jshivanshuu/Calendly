@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import logo from '../assets/images/calendly-vector-logo-seeklogo/calendly-seeklogo.png'
+import logo from '../assets/images/brand-logo/logo.png'
 
 export default function Home() {
   const [schedulingStep, setSchedulingStep] = useState(0)
@@ -33,9 +33,9 @@ export default function Home() {
           <div className="text-center">
             {/* Logo and Title */}
             <div className="flex justify-center items-center mb-8">
-              <img src={logo} alt="Calendly Logo" className="h-20 w-auto mr-6" />
+              <img src={logo} alt="Schedulr logo" className="h-20 w-auto mr-6" />
               <h1 className="text-7xl font-bold text-gray-900 tracking-tight">
-                Calendly Clone
+                Schedulr
               </h1>
             </div>
 
