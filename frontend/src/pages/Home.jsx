@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Calendar, Clock, Users, ArrowRight, CheckCircle, Layers, ShieldCheck, Zap } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import logo from '../assets/images/calendly-vector-logo-seeklogo/calendly-seeklogo.png'
 
 export default function Home() {
@@ -113,12 +113,14 @@ export default function Home() {
                   <div className="rounded-lg bg-white p-4 border border-gray-200">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-gray-900">Event type</span>
-                      <span className="text-xs text-gray-500">{activeFeature === 0 ? 'Selected' : 'Preview'}</span>
+                      <span className="text-xs text-gray-500">
+                        {schedulingStep === 0 ? 'Selected' : 'Preview'}
+                      </span>
                     </div>
                     <p className="mt-2 text-sm text-gray-600">
-                      {activeFeature === 0
+                      {schedulingStep === 0
                         ? '15 Minute Sync — Video call'
-                        : activeFeature === 1
+                        : schedulingStep === 1
                         ? 'Share your link & watch bookings appear'
                         : 'Booked slots auto-add to your calendar'}
                     </p>
@@ -153,9 +155,9 @@ export default function Home() {
                     <button
                       key={mode}
                       type="button"
-                      onClick={() => setActiveFeature(mode === 'Week' ? 1 : 2)}
+                      onClick={() => setAvailabilityView(mode)}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                        (mode === 'Week' && activeFeature === 1) || (mode === 'Day' && activeFeature === 2)
+                        availabilityView === mode
                           ? 'bg-blue-600 text-white'
                           : 'text-gray-600 hover:bg-white'
                       }`}
@@ -178,7 +180,7 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="space-y-2">
-                    {activeFeature === 1 ? (
+                    {availabilityView === 'Week' ? (
                       <div className="text-sm text-gray-700">
                         <span className="font-semibold">Weekly view:</span> Available 9am–5pm on weekdays, blocked on weekends.
                       </div>
@@ -205,13 +207,13 @@ export default function Home() {
                 Track upcoming sessions, review past meetings, and manage your schedule with clear visibility.
               </p>
               <div className="flex gap-3">
-                {['Upcoming', 'Past', 'Stats'].map((tab, idx) => (
+                {['Upcoming', 'Past', 'Stats'].map((tab) => (
                   <button
                     key={tab}
                     type="button"
-                    onClick={() => setActiveFeature(idx + 3)}
+                    onClick={() => setMeetingsTab(tab)}
                     className={`px-5 py-3 rounded-lg font-medium transition-colors ${
-                      activeFeature === idx + 3
+                      meetingsTab === tab
                         ? 'bg-blue-600 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
@@ -225,7 +227,7 @@ export default function Home() {
             <div className="relative rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-50 via-white to-purple-50 opacity-60" />
               <div className="relative">
-                {activeFeature === 3 && (
+                {meetingsTab === 'Upcoming' && (
                   <div>
                     <h3 className="text-2xl font-semibold text-gray-900 mb-3">Upcoming meetings</h3>
                     <ul className="space-y-3">
@@ -255,7 +257,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {activeFeature === 4 && (
+                {meetingsTab === 'Past' && (
                   <div>
                     <h3 className="text-2xl font-semibold text-gray-900 mb-3">Past meetings</h3>
                     <ul className="space-y-3">
@@ -271,7 +273,7 @@ export default function Home() {
                   </div>
                 )}
 
-                {activeFeature === 5 && (
+                {meetingsTab === 'Stats' && (
                   <div>
                     <h3 className="text-2xl font-semibold text-gray-900 mb-3">Stats</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

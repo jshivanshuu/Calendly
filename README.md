@@ -8,7 +8,7 @@ A full-stack scheduling/booking web application closely replicating Calendly's d
 |---|---|
 | Frontend | React 18 + Vite + Tailwind CSS |
 | Backend | Python 3.10+ + FastAPI |
-| Database | MySQL 8+ |
+| Database | SQLite |
 | ORM | SQLAlchemy 2 |
 | HTTP Client | Axios |
 
@@ -58,20 +58,11 @@ calendly-clone/
 ### Prerequisites
 - Node.js 18+
 - Python 3.10+
-- MySQL 8+ running locally
+- SQLite (built-in with Python)
 
 ---
 
-### 1. Database Setup
-
-Create the MySQL database:
-```sql
-CREATE DATABASE calendly_clone CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
-
----
-
-### 2. Backend Setup
+### 1. Backend Setup
 
 ```bash
 cd backend
@@ -85,8 +76,8 @@ pip install -r requirements.txt
 
 # Configure environment
 cp .env.example .env
-# Edit .env and set your MySQL credentials:
-# DATABASE_URL=mysql+pymysql://root:yourpassword@localhost:3306/calendly_clone
+# Edit .env if needed (defaults to SQLite):
+# DATABASE_URL=sqlite:///./calendly_clone.db
 
 # Run the server (tables are auto-created on startup)
 uvicorn app.main:app --reload --port 8000
@@ -199,7 +190,7 @@ start_datetime, end_datetime, notes, status (confirmed|cancelled), created_at
 ## Deployment
 
 ### Backend (Render / Railway)
-1. Set env var: `DATABASE_URL=mysql+pymysql://...`
+1. Set env var: `DATABASE_URL=sqlite:///./calendly_clone.db` (or use a hosted DB like Postgres)
 2. Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 
 ### Frontend (Vercel / Netlify)
