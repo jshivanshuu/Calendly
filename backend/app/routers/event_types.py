@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException
-from ..auth import get_current_user
 from sqlalchemy.orm import Session
 from typing import List
 
@@ -7,7 +6,7 @@ from ..database import get_db
 from ..models import EventType
 from ..schemas import EventTypeCreate, EventTypeUpdate, EventTypeResponse
 
-router = APIRouter(prefix="/api/event-types", tags=["Event Types"], dependencies=[Depends(get_current_user)])
+router = APIRouter(prefix="/api/event-types", tags=["Event Types"])
 
 
 @router.get("/", response_model=List[EventTypeResponse])

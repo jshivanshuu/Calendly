@@ -7,21 +7,6 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
-let authToken = null
-export function setAuthToken(token) {
-  authToken = token
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-}
-
-export function clearAuthToken() {
-  authToken = null
-  delete api.defaults.headers.common['Authorization']
-}
-
-// ── Authentication ───────────────────────────────────────────────────────────
-export const signup = (data) => api.post('/api/auth/signup', data).then(r => r.data)
-export const login = (data) => api.post('/api/auth/login', data).then(r => r.data)
-
 // ── Event Types ───────────────────────────────────────────────────────────────
 export const getEventTypes = () => api.get('/api/event-types/').then(r => r.data)
 export const createEventType = (data) => api.post('/api/event-types/', data).then(r => r.data)

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base
-from .routers import event_types, availability, bookings, meetings, auth
+from .routers import event_types, availability, bookings, meetings
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
@@ -23,7 +23,6 @@ app.add_middleware(
 )
 
 # Register routers
-app.include_router(auth.router)
 app.include_router(event_types.router)
 app.include_router(availability.router)
 app.include_router(bookings.router)

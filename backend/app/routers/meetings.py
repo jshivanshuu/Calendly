@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
-from ..auth import get_current_user
 from sqlalchemy.orm import Session
 from datetime import datetime
 from typing import List, Optional
@@ -8,7 +7,7 @@ from ..database import get_db
 from ..models import Booking
 from ..schemas import BookingResponse
 
-router = APIRouter(prefix="/api/meetings", tags=["Meetings"], dependencies=[Depends(get_current_user)])
+router = APIRouter(prefix="/api/meetings", tags=["Meetings"])
 
 
 @router.get("/", response_model=List[BookingResponse])
