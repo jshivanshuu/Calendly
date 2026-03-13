@@ -54,7 +54,7 @@ export default function Home() {
                 <ArrowRight className="ml-2 -mr-1 w-4 h-4" />
               </Link>
               <Link
-                to="/book/demo"
+                to="/book/30min"
                 className="inline-flex items-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
               >
                 View Demo
