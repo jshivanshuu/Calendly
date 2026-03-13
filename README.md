@@ -1,4 +1,4 @@
-# Schedulr — Calendly Clone
+# Calendly Clone
 
 A full-stack scheduling/booking web application closely replicating Calendly's design and user experience.
 
