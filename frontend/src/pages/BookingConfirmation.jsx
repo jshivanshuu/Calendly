@@ -34,7 +34,7 @@ export default function BookingConfirmation() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-12">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 text-center">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 text-center sm:p-8">
 
         {/* Success icon */}
         <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-5">
@@ -94,7 +94,7 @@ export default function BookingConfirmation() {
         </div>
 
         {/* Actions */}
-        <div className="flex gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row">
           <button
             onClick={() => navigate(`/book/${slug}`)}
             className="btn-secondary flex-1 flex items-center justify-center gap-2"

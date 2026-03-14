@@ -30,7 +30,7 @@ export default function EventTypeCard({ event, onEdit, onDelete }) {
       <h3 className="font-semibold text-gray-900 text-base mb-1">{event.name}</h3>
 
       {/* Duration + location */}
-      <div className="flex items-center gap-4 text-gray-500 text-sm mb-3">
+      <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500">
         <span className="flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5" />
           {event.duration_minutes} min
@@ -48,7 +48,7 @@ export default function EventTypeCard({ event, onEdit, onDelete }) {
         </p>
       )}
 
-      <div className="border-t border-gray-100 pt-4 flex items-center justify-between">
+      <div className="flex flex-col gap-3 border-t border-gray-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
         {/* Copy link */}
         <button
           onClick={copyLink}
@@ -59,7 +59,7 @@ export default function EventTypeCard({ event, onEdit, onDelete }) {
         </button>
 
         {/* Actions */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 self-end sm:self-auto">
           <a
             href={`/book/${event.slug}`}
             target="_blank"

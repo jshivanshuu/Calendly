@@ -5,8 +5,6 @@ import Calendar from '../components/Calendar'
 import TimeSlots from '../components/TimeSlots'
 import { getPublicEvent, getAvailableSlots, getAvailability, createBooking } from '../api'
 
-const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December']
-
 function formatSelectedDate(isoDate) {
   if (!isoDate) return ''
   const [y, m, d] = isoDate.split('-').map(Number)
@@ -113,12 +111,12 @@ export default function PublicBooking() {
   const eventColor = event?.color || '#006BFF'
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-stretch justify-start p-3 sm:p-4 md:items-center md:justify-center">
       {/* Card container */}
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-4xl flex flex-col md:flex-row min-h-[520px]">
+      <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-4xl flex flex-col md:flex-row md:min-h-[520px]">
 
         {/* ── Left Panel: Event Info ──────────────────────────────────────── */}
-        <div className="w-full md:w-64 shrink-0 border-b md:border-b-0 md:border-r border-gray-100 p-7 flex flex-col">
+        <div className="flex w-full shrink-0 flex-col border-b border-gray-100 p-5 sm:p-7 md:w-64 md:border-b-0 md:border-r">
           {/* Back to admin (subtle) */}
           <a href="/" className="flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600 mb-6 transition-colors">
             <ChevronLeft className="w-3 h-3" />
@@ -161,7 +159,7 @@ export default function PublicBooking() {
 
           {/* Selected slot preview */}
           {selectedSlot && step === 'form' && (
-            <div className="mt-auto pt-6 border-t border-gray-100">
+            <div className="mt-6 border-t border-gray-100 pt-6 md:mt-auto">
               <p className="text-xs text-gray-400 mb-1">Selected time</p>
               <p className="text-sm font-semibold text-gray-900">{formatSelectedDate(selectedDate)}</p>
               <p className="text-sm text-gray-600">{formatSlotTime(selectedSlot.start_datetime)}</p>
@@ -173,7 +171,7 @@ export default function PublicBooking() {
         {step === 'calendar' ? (
           <>
             {/* Calendar panel */}
-            <div className="flex-1 p-7 border-b md:border-b-0 md:border-r border-gray-100">
+            <div className="flex-1 border-b border-gray-100 p-5 sm:p-7 md:border-b-0 md:border-r">
               <h2 className="font-semibold text-gray-900 mb-5">Select a Date & Time</h2>
               <Calendar
                 selectedDate={selectedDate}
@@ -183,7 +181,7 @@ export default function PublicBooking() {
             </div>
 
             {/* Time slots panel */}
-            <div className="w-full md:w-52 p-7">
+            <div className="w-full p-5 sm:p-7 md:w-52">
               {selectedDate ? (
                 <>
                   <h3 className="font-medium text-gray-700 text-sm mb-4">
@@ -211,7 +209,7 @@ export default function PublicBooking() {
           </>
         ) : (
           /* Booking Form */
-          <div className="flex-1 p-7">
+          <div className="flex-1 p-5 sm:p-7">
             <button
               onClick={() => setStep('calendar')}
               className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-6 transition-colors"

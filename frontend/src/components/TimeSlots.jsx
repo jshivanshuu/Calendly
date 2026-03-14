@@ -26,7 +26,7 @@ export default function TimeSlots({ slots, selectedSlot, onSelect, loading }) {
   }
 
   return (
-    <div className="space-y-2 max-h-[420px] overflow-y-auto pr-1">
+    <div className="max-h-[320px] space-y-2 overflow-y-auto pr-1 md:max-h-[420px]">
       {slots.map((slot) => (
         <button
           key={slot.start_datetime}

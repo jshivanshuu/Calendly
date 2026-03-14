@@ -4,7 +4,7 @@ import logo from '../assets/images/brand-logo/logo.png'
 
 export default function Sidebar() {
   return (
-    <aside className="w-56 shrink-0 h-screen sticky top-0 bg-white border-r border-gray-100 flex flex-col">
+    <aside className="sticky top-0 hidden h-[calc(100vh-73px)] w-56 shrink-0 bg-white border-r border-gray-100 lg:flex lg:flex-col">
       {/* Logo */}
       <div className="px-5 py-5 border-b border-gray-100">
         <div className="flex items-center gap-2.5">

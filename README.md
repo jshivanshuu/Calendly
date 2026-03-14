@@ -189,9 +189,29 @@ start_datetime, end_datetime, notes, status (confirmed|cancelled), created_at
 
 ## Deployment
 
-### Backend (Render / Railway)
-1. Set env var: `DATABASE_URL=sqlite:///./calendly_clone.db` (or use a hosted DB like Postgres)
-2. Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+### Single-Container Docker
+1. Build from the project root:
+```bash
+docker build -t schedulr .
+```
+2. Run the container:
+```bash
+docker run -p 8000:8000 -e PORT=8000 -e ALLOWED_ORIGINS=http://localhost:8000 schedulr
+```
+3. Open `http://localhost:8000`
+
+Notes:
+- The Docker image builds the React frontend and serves it from the FastAPI app.
+- For same-origin deployments, you can leave `VITE_API_URL` unset.
+- To point the frontend at a separate API, build with `--build-arg VITE_API_URL=https://your-api-domain`.
+- SQLite will live inside the container unless you mount storage or set `DATABASE_URL`.
+
+### Backend (Render / Railway / Hugging Face Spaces)
+1. For Render or Railway, set `DATABASE_URL=sqlite:///./calendly_clone.db` or use Postgres.
+2. For Hugging Face Spaces, deploy the contents of the `backend/` folder as a `Docker` Space.
+3. Hugging Face runs Docker apps on port `7860`, and this backend now defaults to `/data/calendly_clone.db` when `/data` is available.
+4. Set `ALLOWED_ORIGINS=https://your-frontend-domain` so the frontend can call the API.
+5. Start command outside Docker remains: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 
 ### Frontend (Vercel / Netlify)
 1. Set env var: `VITE_API_URL=https://your-backend.render.com`

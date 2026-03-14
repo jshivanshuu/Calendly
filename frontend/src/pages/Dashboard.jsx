@@ -111,14 +111,14 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex-1 p-8">
+    <div className="flex-1 p-4 sm:p-6 lg:p-8">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Event Types</h1>
           <p className="text-gray-500 text-sm mt-1">Create and manage your scheduling event types</p>
         </div>
-        <button onClick={openCreate} className="btn-primary flex items-center gap-2">
+        <button onClick={openCreate} className="btn-primary flex w-full items-center justify-center gap-2 sm:w-auto">
           <Plus className="w-4 h-4" />
           New Event Type
         </button>
@@ -183,7 +183,7 @@ export default function Dashboard() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <div>
                   <label className="label">Duration</label>
                   <select
@@ -209,12 +209,12 @@ export default function Dashboard() {
 
               <div>
                 <label className="label">URL Slug *</label>
-                <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-500">
+                <div className="flex items-center overflow-hidden rounded-lg border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500">
                   <span className="px-3 py-2.5 bg-gray-50 text-gray-400 text-sm border-r border-gray-200">
                     /book/
                   </span>
                   <input
-                    className="flex-1 px-3 py-2.5 text-sm outline-none"
+                    className="min-w-0 flex-1 px-3 py-2.5 text-sm outline-none"
                     value={form.slug}
                     onChange={e => setForm(f => ({ ...f, slug: slugify(e.target.value) }))}
                     placeholder="30min"
@@ -256,7 +256,7 @@ export default function Dashboard() {
                 <p className="text-sm text-red-500 bg-red-50 px-3 py-2 rounded-lg">{error}</p>
               )}
 
-              <div className="flex gap-3 pt-2">
+              <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                 <button type="button" onClick={() => setShowModal(false)} className="btn-secondary flex-1">
                   Cancel
                 </button>

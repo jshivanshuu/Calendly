@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import logo from '../assets/images/brand-logo/logo.png'
 
+const marketingNavItems = [
+  { href: '#home', label: 'Home' },
+  { href: '#product', label: 'Product' },
+  { href: '#resources', label: 'Resources' },
+  { href: '#solutions', label: 'Solutions' },
+  { href: '#pricing', label: 'Pricing' },
+]
+
 export default function Home() {
   const [schedulingStep, setSchedulingStep] = useState(0)
   const [availabilityView, setAvailabilityView] = useState('Week')
@@ -28,34 +36,65 @@ export default function Home() {
 
       {/* Content */}
       <div className="relative z-10">
+        <header className="sticky top-0 z-20 border-b border-white/60 bg-white/80 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+            <a href="#home" className="flex items-center gap-3">
+              <img src={logo} alt="Schedulr logo" className="h-10 w-auto" />
+              <span className="text-lg font-semibold text-gray-900">Schedulr</span>
+            </a>
+
+            <nav className="hidden items-center gap-2 md:flex">
+              {marketingNavItems.map(({ href, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-white hover:text-gray-900"
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
+
+            <Link
+              to="/dashboard"
+              className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+            >
+              Get Started
+            </Link>
+          </div>
+        </header>
+
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+        <div
+          id="home"
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-14 sm:pt-20 sm:pb-16"
+        >
           <div className="text-center">
             {/* Logo and Title */}
-            <div className="flex justify-center items-center mb-8">
-              <img src={logo} alt="Schedulr logo" className="h-20 w-auto mr-6" />
-              <h1 className="text-7xl font-bold text-gray-900 tracking-tight">
+            <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+              <img src={logo} alt="Schedulr logo" className="h-16 w-auto sm:h-20" />
+              <h1 className="text-5xl font-bold text-gray-900 tracking-tight sm:text-6xl lg:text-7xl">
                 Schedulr
               </h1>
             </div>
 
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-gray-600 sm:mb-12 sm:text-xl">
               Schedule meetings effortlessly with our powerful scheduling platform.
               Connect with others and manage your time like never before.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex justify-center space-x-4 mb-16">
+            <div className="mb-14 flex flex-col justify-center gap-3 sm:mb-16 sm:flex-row sm:gap-4">
               <Link
                 to="/dashboard"
-                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
+                className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-8 py-3 text-base font-medium text-white transition-colors duration-200 hover:bg-blue-700"
               >
                 Get Started
                 <ArrowRight className="ml-2 -mr-1 w-4 h-4" />
               </Link>
               <Link
                 to="/book/30min"
-                className="inline-flex items-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+                className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-8 py-3 text-base font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50"
               >
                 View Demo
               </Link>
@@ -64,10 +103,10 @@ export default function Home() {
         </div>
 
         {/* Section: Scheduling Hero */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div id="product" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
                 Schedule in seconds.
               </h2>
               <p className="text-lg text-gray-600 mb-6">
@@ -139,18 +178,18 @@ export default function Home() {
         </div>
 
         {/* Section: Availability Hero */}
-        <div className="bg-white py-16">
+        <div id="solutions" className="bg-white py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
                   Own your time.
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Set weekly availability once and let the system respect it automatically.
                   Block out time and never worry about double bookings.
                 </p>
-                <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 p-2">
+                <div className="inline-flex flex-wrap items-center gap-2 rounded-full bg-gray-100 p-2">
                   {['Week', 'Day'].map((mode) => (
                     <button
                       key={mode}
@@ -197,16 +236,16 @@ export default function Home() {
         </div>
 
         {/* Section: Meetings Hero */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div id="resources" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
                 See meetings at a glance.
               </h2>
               <p className="text-lg text-gray-600 mb-6">
                 Track upcoming sessions, review past meetings, and manage your schedule with clear visibility.
               </p>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 {['Upcoming', 'Past', 'Stats'].map((tab) => (
                   <button
                     key={tab}
@@ -294,7 +333,7 @@ export default function Home() {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-gray-50 py-16">
+        <div id="pricing" className="bg-gray-50 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div>
