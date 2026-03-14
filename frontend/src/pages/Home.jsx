@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import logo from '../assets/images/brand-logo/logo.png'
@@ -10,6 +10,43 @@ const marketingNavItems = [
   { href: '#solutions', label: 'Solutions' },
   { href: '#pricing', label: 'Pricing' },
 ]
+
+function RevealText({ as: Tag = 'div', className = '', delay = 0, children }) {
+  const ref = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const node = ref.current
+
+    if (!node) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+    )
+
+    observer.observe(node)
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <Tag
+      ref={ref}
+      className={`scroll-reveal ${isVisible ? 'is-visible' : ''} ${className}`.trim()}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </Tag>
+  )
+}
 
 export default function Home() {
   const [schedulingStep, setSchedulingStep] = useState(0)
@@ -71,20 +108,30 @@ export default function Home() {
         >
           <div className="text-center">
             {/* Logo and Title */}
-            <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+            <RevealText
+              className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+              delay={50}
+            >
               <img src={logo} alt="Schedulr logo" className="h-16 w-auto sm:h-20" />
               <h1 className="text-5xl font-bold text-gray-900 tracking-tight sm:text-6xl lg:text-7xl">
                 Schedulr
               </h1>
-            </div>
+            </RevealText>
 
-            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-gray-600 sm:mb-12 sm:text-xl">
+            <RevealText
+              as="p"
+              className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-gray-600 sm:mb-12 sm:text-xl"
+              delay={140}
+            >
               Schedule meetings effortlessly with our powerful scheduling platform.
               Connect with others and manage your time like never before.
-            </p>
+            </RevealText>
 
             {/* CTA Buttons */}
-            <div className="mb-14 flex flex-col justify-center gap-3 sm:mb-16 sm:flex-row sm:gap-4">
+            <RevealText
+              className="mb-14 flex flex-col justify-center gap-3 sm:mb-16 sm:flex-row sm:gap-4"
+              delay={220}
+            >
               <Link
                 to="/dashboard"
                 className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-8 py-3 text-base font-medium text-white transition-colors duration-200 hover:bg-blue-700"
@@ -98,7 +145,7 @@ export default function Home() {
               >
                 View Demo
               </Link>
-            </div>
+            </RevealText>
           </div>
         </div>
 
@@ -106,13 +153,13 @@ export default function Home() {
         <div id="product" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+              <RevealText as="h2" className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
                 Schedule in seconds.
-              </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              </RevealText>
+              <RevealText as="p" className="text-lg text-gray-600 mb-6" delay={100}>
                 Create reusable event types, set duration & location, and share your link.
                 No back-and-forth, just pick a time and get booked.
-              </p>
+              </RevealText>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {['Create', 'Share', 'Book'].map((step, idx) => (
                   <button
@@ -144,10 +191,12 @@ export default function Home() {
             <div className="relative rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-50 via-white to-purple-50 opacity-60" />
               <div className="relative">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-3">Quick setup preview</h3>
-                <p className="text-gray-600 mb-6">
+                <RevealText as="h3" className="text-2xl font-semibold text-gray-900 mb-3">
+                  Quick setup preview
+                </RevealText>
+                <RevealText as="p" className="text-gray-600 mb-6" delay={100}>
                   Jump into a template editor and see how easy it is to create a booking page.
-                </p>
+                </RevealText>
                 <div className="space-y-3">
                   <div className="rounded-lg bg-white p-4 border border-gray-200">
                     <div className="flex items-center justify-between">
@@ -182,13 +231,13 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div>
-                <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+                <RevealText as="h2" className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
                   Own your time.
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
+                </RevealText>
+                <RevealText as="p" className="text-lg text-gray-600 mb-6" delay={100}>
                   Set weekly availability once and let the system respect it automatically.
                   Block out time and never worry about double bookings.
-                </p>
+                </RevealText>
                 <div className="inline-flex flex-wrap items-center gap-2 rounded-full bg-gray-100 p-2">
                   {['Week', 'Day'].map((mode) => (
                     <button
@@ -210,7 +259,9 @@ export default function Home() {
               <div className="relative rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-50 via-white to-blue-50 opacity-50" />
                 <div className="relative">
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">Availability preview</h3>
+                  <RevealText as="h3" className="text-2xl font-semibold text-gray-900 mb-4">
+                    Availability preview
+                  </RevealText>
                   <div className="grid grid-cols-7 gap-2 text-center text-xs font-medium text-gray-500 mb-4">
                     {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
                       <div key={day} className="py-2 rounded-lg bg-white border border-gray-200">
@@ -239,12 +290,12 @@ export default function Home() {
         <div id="resources" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+              <RevealText as="h2" className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
                 See meetings at a glance.
-              </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              </RevealText>
+              <RevealText as="p" className="text-lg text-gray-600 mb-6" delay={100}>
                 Track upcoming sessions, review past meetings, and manage your schedule with clear visibility.
-              </p>
+              </RevealText>
               <div className="flex flex-wrap gap-3">
                 {['Upcoming', 'Past', 'Stats'].map((tab) => (
                   <button
@@ -268,7 +319,9 @@ export default function Home() {
               <div className="relative">
                 {meetingsTab === 'Upcoming' && (
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Upcoming meetings</h3>
+                    <RevealText as="h3" className="text-2xl font-semibold text-gray-900 mb-3">
+                      Upcoming meetings
+                    </RevealText>
                     <ul className="space-y-3">
                       <li className="rounded-lg border border-gray-200 p-4 bg-white">
                         <div className="flex items-center justify-between">
@@ -298,7 +351,9 @@ export default function Home() {
 
                 {meetingsTab === 'Past' && (
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Past meetings</h3>
+                    <RevealText as="h3" className="text-2xl font-semibold text-gray-900 mb-3">
+                      Past meetings
+                    </RevealText>
                     <ul className="space-y-3">
                       <li className="rounded-lg border border-gray-200 p-4 bg-white">
                         <p className="font-semibold text-gray-900">Project kickoff</p>
@@ -314,7 +369,9 @@ export default function Home() {
 
                 {meetingsTab === 'Stats' && (
                   <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">Stats</h3>
+                    <RevealText as="h3" className="text-2xl font-semibold text-gray-900 mb-3">
+                      Stats
+                    </RevealText>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="rounded-lg border border-gray-200 p-6 bg-white">
                         <p className="text-sm text-gray-500">Meetings booked</p>
@@ -335,6 +392,13 @@ export default function Home() {
         {/* Stats Section */}
         <div id="pricing" className="bg-gray-50 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <RevealText className="mb-10 text-center" delay={60}>
+              <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Simple pricing, clear value.</h2>
+              <p className="mt-4 text-lg text-gray-600">
+                Start free, scale when your team needs more booking power.
+              </p>
+            </RevealText>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl font-bold text-gray-900 mb-2">10K+</div>
