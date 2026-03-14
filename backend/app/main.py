@@ -1,6 +1,8 @@
 import os
+from pathlib import Path
 
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base
@@ -39,12 +41,33 @@ app.include_router(availability.router)
 app.include_router(bookings.router)
 app.include_router(meetings.router)
 
+frontend_dist_dir = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+frontend_index_file = frontend_dist_dir / "index.html"
+
 
 @app.get("/")
 def root():
+    if frontend_index_file.exists():
+        return FileResponse(frontend_index_file)
     return {"message": "Schedulr API is running", "docs": "/docs"}
 
 
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.get("/{full_path:path}")
+def serve_frontend(full_path: str):
+    if not frontend_index_file.exists():
+        return {"message": "Schedulr API is running", "docs": "/docs"}
+
+    requested_path = (frontend_dist_dir / full_path).resolve()
+    if (
+        full_path
+        and requested_path.is_file()
+        and requested_path.is_relative_to(frontend_dist_dir.resolve())
+    ):
+        return FileResponse(requested_path)
+
+    return FileResponse(frontend_index_file)

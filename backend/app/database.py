@@ -6,7 +6,10 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./calendly_clone.db")
+default_sqlite_path = (
+    "/data/calendly_clone.db" if os.path.isdir("/data") else "./calendly_clone.db"
+)
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{default_sqlite_path}")
 is_sqlite = DATABASE_URL.startswith("sqlite")
 
 engine = create_engine(
