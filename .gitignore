@@ -2,3 +2,5 @@
 /backend/venv
 /backend-calendly/venv
 *.pyc
+/backend/.env.example
+/backend-calendly/.env.example

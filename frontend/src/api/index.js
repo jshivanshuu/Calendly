@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000' : '')
+const DEFAULT_PRODUCTION_API_URL = 'https://shivanshujha-backend-calendly.hf.space'
+const BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV ? 'http://localhost:8000' : DEFAULT_PRODUCTION_API_URL)
 
 const api = axios.create({
   baseURL: BASE_URL,

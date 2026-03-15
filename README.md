@@ -101,7 +101,8 @@ npm install
 
 # Configure environment
 cp .env.example .env
-# .env already has: VITE_API_URL=http://localhost:8000
+# .env.example points to: VITE_API_URL=https://shivanshujha-backend-calendly.hf.space
+# Use http://localhost:8000 instead if you're running the backend locally
 
 # Start development server
 npm run dev
@@ -214,7 +215,7 @@ Notes:
 5. Start command outside Docker remains: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 
 ### Frontend (Vercel / Netlify)
-1. Set env var: `VITE_API_URL=https://your-backend.render.com`
+1. Set env var: `VITE_API_URL=https://shivanshujha-backend-calendly.hf.space`
 2. Build command: `npm run build`
 3. Output directory: `dist`
 
